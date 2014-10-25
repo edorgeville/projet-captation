@@ -34,11 +34,40 @@
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// add a torus	
-	var geometry	= new THREE.TorusKnotGeometry(0.5-0.12, 0.12);
-	var material	= new THREE.MeshNormalMaterial(); 
-	var mesh	= new THREE.Mesh( geometry, material );
-	scene.add( mesh );
+	// var geometry	= new THREE.TorusKnotGeometry(0.5-0.12, 0.12);
+	// var material	= new THREE.MeshNormalMaterial(); 
+	// var mesh	= new THREE.Mesh( geometry, material );
+	// scene.add( mesh );
+
+	var geometry = new THREE.BoxGeometry(10,3,0,1);
+	// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
+	var materialArray = [];
+	for(var i = 0; i < 6; i ++){
+		materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/ciel.png' ) }));
+	}
+	var material = new THREE.MeshFaceMaterial(materialArray);
+	var ciel = new THREE.Mesh(geometry, material);
+	ciel.position.y = 1;
+	ciel.position.z = -3;
+
+	scene.add(ciel);
+
+	var geometry = new THREE.BoxGeometry(6,3,0,1);
+	// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
+	var materialArray = [];
+	for(var i = 0; i < 6; i ++){
+		materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/colines.png' ), transparent: true }));
+	}
+	var material = new THREE.MeshFaceMaterial(materialArray);
+	var colines = new THREE.Mesh(geometry, material);
+	colines.position.y = 0;
+	colines.position.z = -2;
+
+	scene.add(colines);
+
 	
+	// camera.position.z = 10;
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
