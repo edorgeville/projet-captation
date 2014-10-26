@@ -23,3 +23,7 @@ Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http:/
 
 ### Thanks
 - Ce projet est basé sur [Three.js Boilerplate](https://github.com/jeromeetienne/threejsboilerplate/) réalisé par [Jerome Etienne](https://github.com/jeromeetienne/)
+
+
+### License
+See the [LICENSE file](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/LICENSE)
