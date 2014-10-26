@@ -71,6 +71,7 @@
 
 
 	addMoulins();
+	addFleurs();
 
 	// camera.position.z = 10;
 
@@ -116,6 +117,53 @@
 		scene.add(moulin_helice);
 
 		return moulin;
+	}
+
+	function addFleurs(){
+		fleurs = [];
+		fleurs.push(addFleur(1, -0.5, 0, -0.2));
+		fleurs.push(addFleur(0, -0.52, 0, -0.2));
+		fleurs.push(addFleur(0, -0.52, 0, -0.21));
+	}
+
+	function addFleur(x, y, z){
+		var fleur = {};
+		var w = 0.8/8;
+		var h = 0.8/8;
+		var d = 0;
+
+		var geometry = new THREE.BoxGeometry(w,h,d,1);
+		// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
+		var materialArray = [];
+		for(var i = 0; i < 6; i ++){
+			materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/pissenlit_petales.png' ), transparent: true }));
+		}
+		var material = new THREE.MeshFaceMaterial(materialArray);
+		var petales = new THREE.Mesh(geometry, material);
+		petales.position.x = x;
+		petales.position.y = y;
+		petales.position.z = z;
+
+		fleur.patales = petales;
+		scene.add(petales);
+
+		var geometry = new THREE.BoxGeometry(w/10,w,d,1);
+		// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
+		var materialArray = [];
+		for(var i = 0; i < 6; i ++){
+			materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/tige.png' ), transparent: true }));
+		}
+		var material = new THREE.MeshFaceMaterial(materialArray);
+		tige = new THREE.Mesh(geometry, material);
+		tige.position.x = x + 0.02 * w;
+		tige.position.y = y - 0.55 * w;
+		tige.position.z = z - 0.01 * w;
+		tige.name = "tige";
+
+		fleur.tige = tige;
+		scene.add(tige);
+
+		return fleur;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
