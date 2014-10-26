@@ -39,7 +39,7 @@
 	// var mesh	= new THREE.Mesh( geometry, material );
 	// scene.add( mesh );
 
-	var geometry = new THREE.BoxGeometry(10,3,0,1);
+	var geometry = new THREE.BoxGeometry(30,20,0,1);
 	// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
 	var materialArray = [];
 	for(var i = 0; i < 6; i ++){
@@ -48,11 +48,11 @@
 	var material = new THREE.MeshFaceMaterial(materialArray);
 	var ciel = new THREE.Mesh(geometry, material);
 	ciel.position.y = 1;
-	ciel.position.z = -3;
+	ciel.position.z = -20;
 
 	scene.add(ciel);
 
-	var geometry = new THREE.BoxGeometry(6,3,0,1);
+	var geometry = new THREE.BoxGeometry(6,3.4,0,1);
 	// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
 	var materialArray = [];
 	for(var i = 0; i < 6; i ++){
@@ -65,8 +65,54 @@
 
 	scene.add(colines);
 
-	
+
+	addMoulins();
+
 	// camera.position.z = 10;
+
+	function addMoulins(){
+		moulins = [];
+		moulins.push(addMoulin(0.3, 0.8, 0, -1, 0, -1));
+		moulins.push(addMoulin(0.3, 0.8, 0, -2, 0, -1.5));
+		moulins.push(addMoulin(0.3, 0.8, 0, 2, 0.2, -2.5));
+	}
+
+	function addMoulin(w, h, d, x, y, z){
+		var moulin = {};
+
+		var geometry = new THREE.BoxGeometry(w,h,d,1);
+		// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
+		var materialArray = [];
+		for(var i = 0; i < 6; i ++){
+			materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/moulin_base.png' ), transparent: true }));
+		}
+		var material = new THREE.MeshFaceMaterial(materialArray);
+		var moulin_base = new THREE.Mesh(geometry, material);
+		moulin_base.position.x = x;
+		moulin_base.position.y = y;
+		moulin_base.position.z = z;
+
+		moulin.base = moulin_base;
+		scene.add(moulin_base);
+
+		var geometry = new THREE.BoxGeometry(h,h,d,1);
+		// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
+		var materialArray = [];
+		for(var i = 0; i < 6; i ++){
+			materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/moulin_helice.png' ), transparent: true }));
+		}
+		var material = new THREE.MeshFaceMaterial(materialArray);
+		window.moulin_helice = new THREE.Mesh(geometry, material);
+		moulin_helice.position.x = x;
+		moulin_helice.position.y = y + 0.35;
+		moulin_helice.position.z = z + 0.01;
+		moulin_helice.name = "moulin_helice";
+
+		moulin.helice = moulin_helice;
+		scene.add(moulin_helice);
+
+		return moulin;
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -89,6 +135,15 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
+		
+		//
+
+		for (var i = 0; i < moulins.length; i++){
+			moulins[i].helice.rotateZ(-0.01);
+		}
+
+
+		//
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
