@@ -12,6 +12,10 @@
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
 
+	var wind = 1;
+	var fire = 1;
+	var water = 1;
+
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		antialias	: true
@@ -139,7 +143,7 @@
 		//
 
 		for (var i = 0; i < moulins.length; i++){
-			moulins[i].helice.rotateZ(-0.01);
+			moulins[i].helice.rotateZ(-0.001 * wind);
 		}
 
 
@@ -153,4 +157,35 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-</script></body>
+
+</script>
+<script src="/socket.io/socket.io.js"></script><script>
+	//-----------
+	//
+	//	SOCKET CONNECTION
+	//
+	//
+
+	var socket = io();
+	socket.on("init", function(initValues){
+		wind = initValues["wind"] || wind;
+		fire = initValues["fire"] || fire;
+		water = initValues["water"] || water;
+	});
+
+	socket.on("event", function(e){
+		if(e.type == "wind"){
+			wind = e.value;
+			console.warn("Spin speed : " + wind);
+		}else if(e.type == "fire"){
+			fire = e.value;
+			console.warn("Fire temperature : " + fire);
+		}
+		else if(e.type == "water"){
+			water = e.value;
+			console.warn("Water flow : " + water);
+		}
+		// console.log("event: " + e);
+	});
+</script>
+</body>

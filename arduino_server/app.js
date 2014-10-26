@@ -17,7 +17,6 @@ setInterval(function(){
     var e = {};
     e.type = "wind";
     e.value = value;
-    // socket.emit('ping', value);
     socket.emit('event', e);
 }, 1000);
 
