@@ -22,4 +22,4 @@ Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http:/
 
 
 ### Thanks
-- Ce projet est basé sur [Three.js Boilerplate](https://github.com/jeromeetienne/threejsboilerplate/) réalisé par [Jerome Etienne](https://github.com/jeromeetienne/))
+- Ce projet est basé sur [Three.js Boilerplate](https://github.com/jeromeetienne/threejsboilerplate/) réalisé par [Jerome Etienne](https://github.com/jeromeetienne/)

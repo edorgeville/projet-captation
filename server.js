@@ -22,7 +22,6 @@ http.listen(port, function(){
 io.on('connection', function(socket)
 {
     console.log('Client connected.');
-
     socket.emit('init', values);
 
     socket.on('ping', function(value){
