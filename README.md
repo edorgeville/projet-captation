@@ -26,4 +26,4 @@ Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http:/
 
 
 ### License
-See the [LICENSE file](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/LICENSE)
+See the [LICENSE file](https://github.com/th3m4ri0/projet-captation/blob/master/LICENSE)
