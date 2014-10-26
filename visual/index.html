@@ -102,8 +102,8 @@
 			materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/moulin_helice.png' ), transparent: true }));
 		}
 		var material = new THREE.MeshFaceMaterial(materialArray);
-		window.moulin_helice = new THREE.Mesh(geometry, material);
-		moulin_helice.position.x = x;
+		moulin_helice = new THREE.Mesh(geometry, material);
+		moulin_helice.position.x = x + 0.02;
 		moulin_helice.position.y = y + 0.35;
 		moulin_helice.position.z = z + 0.01;
 		moulin_helice.name = "moulin_helice";
