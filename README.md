@@ -16,7 +16,7 @@ npm install
 node app.js
 ```
 
-Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http://localhost:8080
+Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http://localhost:8080)
 
 
 
