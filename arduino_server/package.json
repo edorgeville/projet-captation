@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "prompt": "^0.2.14",
     "serialport": "^1.4.6",
     "socket.io-client": "^1.1.0"
   },
