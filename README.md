@@ -18,7 +18,8 @@ node app.js
 
 Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http://localhost:8080)
 
-
+## Demo
+![Demonstration](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/demo.gif?token=ACj7vCtEceXwTi9tJKLThLC-chrVm5BKks5UWAQAwA%3D%3D)
 
 
 ### Thanks
