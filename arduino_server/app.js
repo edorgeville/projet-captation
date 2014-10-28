@@ -33,50 +33,66 @@ var questions3 = [
     {
         name: 'minWind',
         description: 'Minimum wind',
-        default: '',
-        // type: '',
+        default: 0,
+        type: 'number',
     },
     {
         name: 'maxWind',
         description: 'Maximum wind',
-        default: '',
-        // type: '',
+        default: 0,
+        type: 'number',
     },
     {
         name: 'minFire',
         description: 'Minimum fire',
-        default: '',
-        // type: '',
+        default: 0,
+        type: 'number',
     },
     {
         name: 'maxFire',
         description: 'Maximum fire',
-        default: '',
-        // type: '',
+        default: 0,
+        type: 'number',
     },
     {
         name: 'minWater',
         description: 'Minimum water',
-        default: '',
-        // type: '',
+        default: 0,
+        type: 'number',
     },
     {
         name: 'maxWater',
         description: 'Maximum water',
-        default: '',
-        // type: '',
+        default: 0,
+        type: 'number',
     }
 ];
 
 var options = {};
 
-prompt.get(questions, function (err, result) {
-    if (err) { return onErr(err); }
-    if(result.etalonner == "non")
-        start();
-    else
-        continuerQuestions1();
-});
+function saveOption(option){
+    var name = Object.keys(option)[0];
+    options[name] = option[name];
+    console.log(options);
+}
+
+function saveOptions(options){
+    for(var i = 0; i < options.length; i++){
+        saveOption(options[i]);
+    }
+}
+
+// prompt.get(questions, function (err, result) {
+//     if (err) { return onErr(err); }
+//     if(result.etalonner == "non")
+//         start();
+//     else {
+//         saveOption(result);
+//         continuerQuestions1();
+//     }
+// });
+
+continuerQuestions1();
 
 function continuerQuestions1(){
     serialport.list(function (err, ports) {
@@ -90,13 +106,45 @@ function continuerQuestions1(){
         });
         prompt.get(questions2, function (err, result) {
             if (err) { return onErr(err); }
+            // console.log(result);
+            saveOption(result);
             continuerQuestions2();
         });
     });
 }
 
 function continuerQuestions2(){
-    start();
+    function measure(question, next){
+        var count = 0;
+        var interval = setInterval(function(){
+            //TODO LOG MEASURE
+            console.log(count);
+            if(count > 20){
+                clearInterval(interval);
+                // next();
+                prompt.get(question, function (err, result) {
+                    if (err) { return onErr(err); }
+                    saveOption(result);
+                    next();
+                });
+            }
+            count++;
+        }, 100);
+    }
+
+    measure(questions3[0], function(){
+        measure(questions3[1], function(){
+            measure(questions3[2], function(){
+                measure(questions3[3], function(){
+                    measure(questions3[4], function(){
+                        measure(questions3[5], function(){
+                            start();
+                        })
+                    });
+                });
+            })
+        });
+    });
 }
 
 function start(){
