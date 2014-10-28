@@ -26,12 +26,16 @@ node app.js
 
 Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http://localhost:8080)
 
+### Schéma du système
+![Schema](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/schema.png?token=ACj7vD3auVfRieEPjEx2I9t5rZhYaynIks5UWPQ6wA%3D%3D)
+
 ### Demo
 ![Demonstration](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/demo.gif?token=ACj7vCtEceXwTi9tJKLThLC-chrVm5BKks5UWAQAwA%3D%3D)
 
 
 ### Thanks
 - Ce projet est basé sur [Three.js Boilerplate](https://github.com/jeromeetienne/threejsboilerplate/) réalisé par [Jerome Etienne](https://github.com/jeromeetienne/)
+- [Icônes](https://github.com/google/material-design-icons) par Google et [icône de vent](http://thenounproject.com/term/wind/75103/) par [Thommy Lau](http://thenounproject.com/lch121/) 
 
 
 ### License
