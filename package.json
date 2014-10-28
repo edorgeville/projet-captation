@@ -1,7 +1,7 @@
 {
-  "name": "server",
-  "version": "0.0.0",
-  "description": "",
+  "name": "projet-captation",
+  "version": "0.1.0",
+  "description": "A three.js environment affected by real life events via Arduino",
   "main": "app.js",
   "engines": {
     "node": "0.10.x",
@@ -12,9 +12,8 @@
     "socket.io": "^1.1.0"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+  "repository": "https://github.com/th3m4ri0/projet-captation",
+  "keywords": ["node", "express", "captation", "arduino", "leonardo", "uqam", "serial", "three.js"],
+  "author": "Ruby-Maude Rioux & Erwan d'Orgeville",
+  "license": "MIT"
 }
