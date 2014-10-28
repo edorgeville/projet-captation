@@ -1,4 +1,4 @@
-// console.log('1');
+
 // Connect to server
 var io = require('socket.io-client');
 var socket = io.connect('http://localhost:8080', {reconnect: true});
@@ -11,21 +11,18 @@ prompt.start();
 prompt.message = "";
 prompt.delimiter = "";
 
-var questions = [
-    {
-        name: 'etalonner',
-        // required: true,
-        description: 'Souhaitez-vous étalonner ? (oui/NON)',
-        default: 'non',
-        // message: 'Veuillez répondre par oui ou par non',
-    },
-]; 
+// var questions = [
+//     {
+//         name: 'etalonner',
+//         description: 'Souhaitez-vous étalonner ? (oui/NON)',
+//         default: 'non',
+//     },
+// ]; 
 
 var questions2 = [
     {
         name: 'port',
         description: 'Quel port utiliser ?',
-        // type: '',
     }
 ];
 
@@ -73,7 +70,7 @@ var options = {};
 function saveOption(option){
     var name = Object.keys(option)[0];
     options[name] = option[name];
-    console.log(options);
+    // console.log(options);
 }
 
 function saveOptions(options){
@@ -82,38 +79,44 @@ function saveOptions(options){
     }
 }
 
+console.log('');
+console.log('');
+console.log('--------> Début de l\'étalonnage...');
+console.log('');
+
 // prompt.get(questions, function (err, result) {
 //     if (err) { return onErr(err); }
 //     if(result.etalonner == "non")
 //         start();
 //     else {
 //         saveOption(result);
-//         continuerQuestions1();
+//         continuerQuestions2();
 //     }
 // });
 
-continuerQuestions1();
+continuerQuestions2();
 
-function continuerQuestions1(){
+function continuerQuestions2(){
     serialport.list(function (err, ports) {
         var first = true;
+        console.log('Available serial ports :')
         ports.forEach(function(port) {
-            console.log(port.comName);
+            console.log(" " + port.comName);
             if(first){
                 questions2[0].default = port.comName;
                 first = false;
             }
         });
+        console.log('');
         prompt.get(questions2, function (err, result) {
             if (err) { return onErr(err); }
-            // console.log(result);
             saveOption(result);
-            continuerQuestions2();
+            continuerQuestions3();
         });
     });
 }
 
-function continuerQuestions2(){
+function continuerQuestions3(){
     function measure(question, next){
         var count = 0;
         var interval = setInterval(function(){
@@ -148,7 +151,10 @@ function continuerQuestions2(){
 }
 
 function start(){
-    // console.log('2');
+    console.log('');
+    console.log('--------> Étalonnage terminé');
+    console.log('');
+    console.log('');
 
     // Add a connect listener
     socket.on('connect', function(socket) { 
@@ -163,6 +169,4 @@ function start(){
         e.value = value;
         socket.emit('event', e);
     }, 1000);
-
-    // console.log('3');
 }
