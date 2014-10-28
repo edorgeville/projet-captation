@@ -33,6 +33,7 @@ Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http:/
 ![Demonstration](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/demo.gif?token=ACj7vCtEceXwTi9tJKLThLC-chrVm5BKks5UWAQAwA%3D%3D)
 
 ### Deploy to Heroku
+Pour déployer le serveur sur Heroku simplement, il est possible d'utiliser le bouton suivant :  
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/th3m4ri0/projet-captation)
 
 ### Thanks
