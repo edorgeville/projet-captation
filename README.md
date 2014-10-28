@@ -1,6 +1,9 @@
 # Projet Captation
 ## Par [Ruby-Maude Rioux](http://ca.linkedin.com/pub/ruby-maude-rioux/5a/3b9/b5a) et [Erwan d'Orgeville](http://erwandorgeville.com)
 
+## Description
+Dans le cadre du deuxième travail du cours EDM4640, nous avons créé un monde dont les éléments sont contrôlés par trois senseurs reliés à un Arduino Leonardo. 
+
 ### Usage
 
 Pour lancer le serveur, exécuter les commandes suivantes :
