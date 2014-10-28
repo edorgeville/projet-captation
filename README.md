@@ -35,7 +35,8 @@ Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http:/
 
 ### Thanks
 - Ce projet est basé sur [Three.js Boilerplate](https://github.com/jeromeetienne/threejsboilerplate/) réalisé par [Jerome Etienne](https://github.com/jeromeetienne/)
-- [Icônes](https://github.com/google/material-design-icons) par Google et [icône de vent](http://thenounproject.com/term/wind/75103/) par [Thommy Lau](http://thenounproject.com/lch121/) 
+- [Icônes](https://github.com/google/material-design-icons) par Google
+- [Icône de vent](http://thenounproject.com/term/wind/75103/) par [Thommy Lau](http://thenounproject.com/lch121/) utilisé sous license [CC-Attribution](http://creativecommons.org/licenses/by/3.0/us/)
 
 
 ### License
