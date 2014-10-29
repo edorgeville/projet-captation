@@ -5,7 +5,13 @@
 
 ### Description
 
-Dans le cadre du deuxième travail du cours EDM4640, nous avons créé un monde dont les éléments sont contrôlés par trois senseurs reliés à un Arduino Leonardo. 
+Dans le cadre du travail de Captation (TP2) du cours EDM4640, nous avons créé un monde dont les éléments sont contrôlés par trois senseurs reliés à un Arduino Leonardo. Le "Liquid Flow Meter" calcule l'écoulement de l'eau. Le "Thermistor" calcule la chaleur de la cuiller. Le "DC Motor" calcule la force du vent.
+
+### Matériaux utilisés
+Arduino Leonardo - Model: A000057
+[Geared DC Motor](http://www.spikenzielabs.com/Catalog/index.php?main_page=product_info&cPath=22_89&products_id=997) - Model: CK-DCMOTORWHEEL
+[Liquid Flow Meter](http://www.adafruit.com/products/828) - Plastic 1/2" NPS Threaded
+[Epoxy Thermistor](http://www.adafruit.com/product/372) - 3950 NTC
 
 ### Usage
 
@@ -35,6 +41,10 @@ Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http:/
 
 ![Schema](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/shema.png)
 
+###Schéma final
+
+![Schema] (https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/shema_final.png) 
+
 ### Demo
 ![Demonstration](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/demo.gif)
 
@@ -48,6 +58,7 @@ Pour déployer le serveur sur Heroku simplement, il est possible d'utiliser le b
 - [Icône de vent](http://thenounproject.com/term/wind/75103/) par [Thommy Lau](http://thenounproject.com/lch121/) utilisé sous license [CC-Attribution](http://creativecommons.org/licenses/by/3.0/us/)
 - [Icône d'Arduino](http://thenounproject.com/term/arduino/34403/) par [uizin](http://thenounproject.com/uizin/) utilisé sous license [CC-Attribution](http://creativecommons.org/licenses/by/3.0/us/)
 - Beaucoup de code, d'exemples et autres par [Thomas Ouellet Fredericks](http://t-o-f.info) sur [le wiki du cours](http://wiki.t-o-f.info/EDM4640/EDM4640).
+- Exemples d'AdaFruit pour le [Liquid Flow Meter](https://github.com/adafruit/Adafruit-Flow-Meter/blob/master/Adafruit_FlowMeter.pde) et le [Thermistor](https://learn.adafruit.com/thermistor?view=all)
 
 
 ### License
