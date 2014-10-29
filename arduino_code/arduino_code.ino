@@ -78,7 +78,7 @@ void loop(){
 
 
   /////////////////////////////////////////////////////////////////////FIRE
- // if ( envoiMessage.metro(10) ) {
+  if ( envoiMessage.metro(10) ) {
     float read_fire;
 
     read_fire = analogRead(input_fire);
@@ -88,7 +88,7 @@ void loop(){
 
     Serial.print("fire ");
     Serial.println(read_fire);
-//  }
+  }
   /////////////////////////////////////////////////////////////////////WIND
 
  // if ( envoiMessage.metro(10) ) {
@@ -99,7 +99,6 @@ void loop(){
     Serial.print("wind ");
     Serial.println(read_wind);
 //  }
-delay(50);
 }
 
 
