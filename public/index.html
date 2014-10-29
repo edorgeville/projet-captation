@@ -3,10 +3,6 @@
 <script src='vendor/three.js/build/three.min.js'></script>
 <script src='vendor/three.js/examples/js/controls/OrbitControls.js'></script>
 <div style='position: absolute; top: 0px; width: 100%;font-family:arial; font-weight: bolder; padding-top: 5px;'>
-	<!-- <a href="https://github.com/jeromeetienne/threejsboilerplate" target="_blank">Boilerplate</a>
-	for
-	<a href="http://threejs.org" target="_blank">three.js</a>
-	- works on desktop and mobile -->
 </div><body style='margin: 0px; overflow: hidden; text-align:center;'><script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
@@ -37,20 +33,7 @@
 	//		add an object in the scene
 	//////////////////////////////////////////////////////////////////////////////////
 
-	// add a torus	
-	// var geometry	= new THREE.TorusKnotGeometry(0.5-0.12, 0.12);
-	// var material	= new THREE.MeshNormalMaterial(); 
-	// var mesh	= new THREE.Mesh( geometry, material );
-	// scene.add( mesh );
-
 	var geometry = new THREE.BoxGeometry(50,50,0,1);
-	// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
-	// var materialArray = [];
-	// for(var i = 0; i < 6; i ++){
-	// 	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/ciel.png' ) }));
-	// }
-	// var material = new THREE.MeshFaceMaterial(materialArray);
-
 	var material = new THREE.MeshBasicMaterial( { 
 	    color: "#8cf4f4", 
 	    shading: THREE.FlatShading,
@@ -81,7 +64,6 @@
 	scene.add(ciel2);
 
 	var geometry = new THREE.BoxGeometry(5,5,0,1);
-	// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
 	var materialArray = [];
 	for(var i = 0; i < 6; i ++){
 		materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/pissenlit_petales.png'), transparent: true }));
@@ -94,7 +76,6 @@
 	scene.add(soleil);
 
 	var geometry = new THREE.BoxGeometry(11.5,6.6,0,1);
-	// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
 	var materialArray = [];
 	for(var i = 0; i < 6; i ++){
 		materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/colines.png' ), transparent: true }));
@@ -123,7 +104,6 @@
 		var moulin = {};
 
 		var geometry = new THREE.BoxGeometry(w,h,d,1);
-		// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
 		var materialArray = [];
 		for(var i = 0; i < 6; i ++){
 			materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/moulin_base.png' ), transparent: true }));
@@ -138,7 +118,6 @@
 		scene.add(moulin_base);
 
 		var geometry = new THREE.BoxGeometry(h,h,d,1);
-		// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
 		var materialArray = [];
 		for(var i = 0; i < 6; i ++){
 			materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/moulin_helice.png' ), transparent: true }));
@@ -158,17 +137,12 @@
 
 	function addFleurs(){
 		fleurs = [];
-		//x, y, z
 		for(var i = 0; i < 500; i++){
 			var randX = randomBetween(-2, 2);
 			var randY = randomBetween(-0.3, -0.8) - 0.2;
 			var randZ = randomBetween(-1.18, -1.22) * randY * 10 - 10;
 			fleurs.push(addFleur(randX, randY, randZ));
 		}
-		// fleurs.push(addFleur(1, -0.5, -0.2));
-		// fleurs.push(addFleur(0, -0.52, -0.2));
-		// fleurs.push(addFleur(0.2, -0.54, -0.21));
-		// fleurs.push(addFleur(0.4, -0.56, -0.21));
 	}
 
 	function randomBetween(start, stop){
@@ -184,7 +158,6 @@
 		if((Math.random() * 10) > 8){
 
 			var geometry = new THREE.BoxGeometry(w,h,d,1);
-			// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
 			var materialArray = [];
 			for(var i = 0; i < 6; i ++){
 				materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/pissenlit_petales.png' ), transparent: true }));
@@ -194,8 +167,6 @@
 			petales.position.x = x;
 			petales.position.y = y;
 			petales.position.z = z;
-			
-				// petales.material.opacity = 0;
 
 			fleur.petales = petales;
 			scene.add(petales);
@@ -203,7 +174,6 @@
 		}
 
 		var geometry = new THREE.BoxGeometry(w/10,w,d,1);
-		// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
 		var materialArray = [];
 		for(var i = 0; i < 6; i ++){
 			materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/tige.png' ), transparent: true }));
@@ -215,7 +185,6 @@
 		tige.position.z = z - 0.01 * w;
 		tige.position.origX = tige.position.x; 
 		tige.name = "tige";
-		// tige.applyMatrix(new THREE.Matrix4().makeTranslation( (w/10) / 2,0,0,0));
 
 
 		fleur.tige = tige;
@@ -235,18 +204,12 @@
 		camera.updateProjectionMatrix()		
 	}, false)
 
-	// render the scene
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );		
 	})
-	
-	// run the rendering loop
 	var lastTimeMsec= null;
 	requestAnimationFrame(function animate(nowMsec){
-		// keep looping
 		requestAnimationFrame( animate );
-		
-		//
 
 		for (var i = 0; i < moulins.length; i++){
 			moulins[i].helice.rotateZ(-0.001 * wind);
@@ -265,19 +228,13 @@
 				fleurs[i].petales.position.x = fleurs[i].tige.position.origX - mapIt(wind,0,100,-0.12,0.12) + randd;
 			}
 		}
-
 		soleil.position.y = mapIt(fire, 0, 100, -2, 4);
-
 		ciel.material.opacity = mapIt(fire, 0, 100, 1, 0);
-
-		//
-		// measure time
-		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
-		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
-		lastTimeMsec	= nowMsec
-		// call each update function
+		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60;
+		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec);
+		lastTimeMsec	= nowMsec;
 		onRenderFcts.forEach(function(onRenderFct){
-			onRenderFct(deltaMsec/1000, nowMsec/1000)
+			onRenderFct(deltaMsec/1000, nowMsec/1000);
 		})
 	})
 
@@ -289,7 +246,6 @@
 			value = max;
 		}
 		var mapped = (value - min) / (max - min) * (newMax - newMin) + newMin;
-		// console.log(mapped);
 		return mapped;
 	}
 
@@ -303,7 +259,6 @@
 
 	var socket = io();
 	socket.on("init", function(initValues){
-		// console.table(initValues);
 		wind = initValues["wind"] || wind;
 		fire = initValues["fire"] || fire;
 		water = initValues["water"] || water;
@@ -312,16 +267,12 @@
 	socket.on("event", function(e){
 		if(e.type == "wind"){
 			wind = e.value;
-			// console.warn("Spin speed : " + wind);
 		}else if(e.type == "fire"){
 			fire = e.value;
-			// console.warn("Fire temperature : " + fire);
 		}
 		else if(e.type == "water"){
 			water = e.value;
-			// console.warn("Water flow : " + water);
 		}
-		// console.log("event: " + e);
 	});
 </script>
 </body>
