@@ -38,7 +38,8 @@
 	    color: "#8cf4f4", 
 	    shading: THREE.FlatShading,
 	    vertexColors: THREE.VertexColors,
-	    transparent: true 
+	    transparent: true,
+	    opacity: 1
 	});
 
 	var ciel = new THREE.Mesh(geometry, material);
@@ -51,26 +52,54 @@
 
 	var geometry = new THREE.BoxGeometry(50,50,0,1);;
 
-	var material = new THREE.MeshBasicMaterial( { 
-	    color: "#D34917", 
-	    shading: THREE.FlatShading,
-	    vertexColors: THREE.VertexColors,
-	    transparent: true
-	});
+	// var material = new THREE.MeshBasicMaterial( { 
+	//     color: "#D34917", 
+	//     shading: THREE.FlatShading,
+	//     vertexColors: THREE.VertexColors,
+	//     transparent: true,
+	// });
+
+	var materialArray = [];
+
+	for(var i = 0; i < 6; i ++){
+		materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/coucher_soleil.png'), transparent: true }));
+	}
+	var material = new THREE.MeshFaceMaterial(materialArray);
+
 
 	var ciel2 = new THREE.Mesh(geometry, material);
 	ciel2.position.y = 1;
 	ciel2.position.z = -21;
 	scene.add(ciel2);
 
+	var geometry = new THREE.BoxGeometry(50,50,0,1);;
+
+	var material = new THREE.MeshBasicMaterial( { 
+	    color: "#545870", 
+	    shading: THREE.FlatShading,
+	    vertexColors: THREE.VertexColors,
+	    transparent: true,
+	    opacity: 0
+	});
+	
+	var ciel3 = new THREE.Mesh(geometry, material);
+	ciel3.position.y = 1;
+	ciel3.position.z = -14;
+	scene.add(ciel3);
+
+
+
+
+
 	var geometry = new THREE.BoxGeometry(5,5,0,1);
 	var materialArray = [];
 	for(var i = 0; i < 6; i ++){
-		materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/pissenlit_petales.png'), transparent: true }));
+		materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/soleil.png'), transparent: true }));
 	}
 	var material = new THREE.MeshFaceMaterial(materialArray);
 	var soleil = new THREE.Mesh(geometry, material);
 	soleil.position.x = 1;
+	soleil.position.y = -2.8;
 	soleil.position.z = -15;
 
 	scene.add(soleil);
@@ -228,7 +257,7 @@
 				fleurs[i].petales.position.x = fleurs[i].tige.position.origX - mapIt(wind,0,100,0,0.12) + randd;
 			}
 		}
-		soleil.position.y = mapIt(fire, 0, 100, 4, -2);
+		soleil.position.y = mapIt(fire, 0, 100, 4, -2.8);
 		ciel.material.opacity = mapIt(fire, 0, 100, 0, 1);
 
 		// if(wind > 50){
@@ -268,6 +297,15 @@
 					lastNuage = nowMsec;
 					addNuage(nowMsec);
 				}
+			}
+		}
+		if(nuages.length > 0){
+			if(ciel3.material.opacity < 0.8){
+				ciel3.material.opacity += 0.005;
+			}
+		}else{
+			if(ciel3.material.opacity > 0.8){
+				ciel3.material.opacity -= 0.05;
 			}
 		}
 		// move nuage
