@@ -219,17 +219,23 @@
 			//min -0.8 max 0.8
 			var randd = 0;
 			if(wind > 50){
-				randd = Math.random() * mapIt(wind,0,100,-0.01,0.01);
+				randd = Math.random() * mapIt(wind,0,100,0,0.01);
 			}
-			fleurs[i].tige.position.x = fleurs[i].tige.position.origX - mapIt(wind,0,100,-0.1,0.1) + randd;
-			fleurs[i].tige.rotation.z = mapIt(wind,0,100,-0.8,0.8) + randd;
+			fleurs[i].tige.position.x = fleurs[i].tige.position.origX - mapIt(wind,0,100,0,0.1) + randd;
+			fleurs[i].tige.rotation.z = mapIt(wind,0,100,0,0.8) + randd;
 			if(fleurs[i].petales){
-				fleurs[i].petales.rotation.z = mapIt(wind,0,100,-0.6,0.6) + randd;
-				fleurs[i].petales.position.x = fleurs[i].tige.position.origX - mapIt(wind,0,100,-0.12,0.12) + randd;
+				fleurs[i].petales.rotation.z = mapIt(wind,0,100,0,0.6) + randd;
+				fleurs[i].petales.position.x = fleurs[i].tige.position.origX - mapIt(wind,0,100,0,0.12) + randd;
 			}
 		}
-		soleil.position.y = mapIt(fire, 0, 100, -2, 4);
-		ciel.material.opacity = mapIt(fire, 0, 100, 1, 0);
+		soleil.position.y = mapIt(fire, 0, 100, 4, -2);
+		ciel.material.opacity = mapIt(fire, 0, 100, 0, 1);
+
+		// if(wind > 50){
+			nuage(nowMsec);
+		// }
+
+
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60;
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec);
 		lastTimeMsec	= nowMsec;
@@ -247,6 +253,52 @@
 		}
 		var mapped = (value - min) / (max - min) * (newMax - newMin) + newMin;
 		return mapped;
+	}
+
+	var nuages = [];
+	var lastNuage = 0;
+
+	function nuage(nowMsec){
+		// console.log('nuage' + nowMsec);
+		if(nuages.length < 5){
+			if(water > 50){
+				console.log(nowMsec - lastNuage);
+				if (nowMsec - lastNuage > 1000){
+					console.log('adding nuage');
+					lastNuage = nowMsec;
+					addNuage();
+				}
+			}
+			//move nuage
+			// console.log('moving nuages');
+		}
+		// console.log(nuages.length)
+		for(var i = 0; i < nuages.length; i++){
+			var nuage = nuages[i];
+			nuage.position.x -= 0.04;
+			if(nuage.position.x < -10){
+				// console.log('removing nuage ' + i);
+				scene.remove(nuage);
+				nuages.splice(i, 1);
+			}
+		}
+	}
+
+	function addNuage(){
+		var geometry = new THREE.BoxGeometry(1.4,1,0,1);
+		var materialArray = [];
+		for(var i = 0; i < 6; i ++){
+			materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/nuage.png' ), transparent: true }));
+		}
+		var material = new THREE.MeshFaceMaterial(materialArray);
+		var nuage = new THREE.Mesh(geometry, material);
+		nuage.position.x = 10;
+		nuage.position.y = randomBetween(2, 4);
+		nuage.position.z = -10;
+
+		scene.add(nuage);
+
+		nuages.push(nuage);
 	}
 
 </script>
@@ -267,11 +319,14 @@
 	socket.on("event", function(e){
 		if(e.type == "wind"){
 			wind = e.value;
+			// console.log("wind: " + e.value);
 		}else if(e.type == "fire"){
 			fire = e.value;
+			// console.log("fire: " + e.value);
 		}
 		else if(e.type == "water"){
 			water = e.value;
+			// console.log("water: " + e.value);
 		}
 	});
 </script>

@@ -30,21 +30,21 @@ var questions3 = [
         name: 'maxWind',
         oriName: 'wind',
         description: 'Maximum wind',
-        default: 500,
+        default: 5,
         type: 'number',
     },
     {
         name: 'minFire',
         oriName: 'fire',
         description: 'Minimum fire',
-        default: 33,
+        default: 7000,
         type: 'number',
     },
     {
         name: 'maxFire',
         oriName: 'fire',
         description: 'Maximum fire',
-        default: 100,
+        default: 11000,
         type: 'number',
     },
     {
@@ -58,7 +58,7 @@ var questions3 = [
         name: 'maxWater',
         oriName: 'water',
         description: 'Maximum water',
-        default: 500,
+        default: 50,
         type: 'number',
     }
 ];
