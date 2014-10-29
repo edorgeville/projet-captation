@@ -99,7 +99,7 @@ void loop(){
     Serial.print("wind ");
     Serial.println(read_wind);
 //  }
-delay(500);
+delay(50);
 }
 
 
