@@ -8,10 +8,10 @@
 Dans le cadre du travail de Captation (TP2) du cours EDM4640, nous avons créé un monde dont les éléments sont contrôlés par trois senseurs reliés à un Arduino Leonardo. Le "Liquid Flow Meter" calcule l'écoulement de l'eau. Le "Thermistor" calcule la chaleur de la cuiller. Le "DC Motor" calcule la force du vent.
 
 ### Matériaux utilisés
-Arduino Leonardo - Model: A000057
-[Geared DC Motor](http://www.spikenzielabs.com/Catalog/index.php?main_page=product_info&cPath=22_89&products_id=997) - Model: CK-DCMOTORWHEEL
-[Liquid Flow Meter](http://www.adafruit.com/products/828) - Plastic 1/2" NPS Threaded
-[Epoxy Thermistor](http://www.adafruit.com/product/372) - 3950 NTC
+- Arduino Leonardo - Model: A000057
+- [Geared DC Motor](http://www.spikenzielabs.com/Catalog/index.php?main_page=product_info&cPath=22_89&products_id=997) - Model: CK-DCMOTORWHEEL
+- [Liquid Flow Meter](http://www.adafruit.com/products/828) - Plastic 1/2" NPS Threaded
+- [Epoxy Thermistor](http://www.adafruit.com/product/372) - 3950 NTC
 
 ### Usage
 
