@@ -10,7 +10,7 @@ var port = process.env.PORT || 8080;
 //   res.send('<script src="/socket.io/socket.io.js"></script><script>var socket = io(); socket.on("event", function(e){console.log("event: " + e); });</script>');
 // });
 
-var values = [];
+var values = {};
 
 app.use(express.static(__dirname + "/public/"));
 
@@ -23,14 +23,15 @@ io.on('connection', function(socket)
 {
     console.log('Client connected.');
     socket.emit('init', values);
+    console.log(values);
 
     socket.on('ping', function(value){
-        console.log('ping: ' + value);
+        // console.log('ping: ' + value);
         socket.broadcast.emit('ping', value);
     });
 
     socket.on('event', function(e){
-        console.log('event- type: ' + e.type + ', value: ' + e.value);
+        // console.log('event- type: ' + e.type + ', value: ' + e.value);
         setValues(e.type, e.value);
         socket.broadcast.emit('event', e);
     });
