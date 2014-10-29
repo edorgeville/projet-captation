@@ -1,3 +1,8 @@
+//Merci aux documents d'aide fournis par AdaFruit avec le LiquidFlow Meter et le Thermistor
+//https://github.com/adafruit/Adafruit-Flow-Meter/blob/master/Adafruit_FlowMeter.pde
+//https://learn.adafruit.com/thermistor?view=all
+
+
 #include <Chrono.h>
 
 Chrono envoiMessage;
@@ -6,8 +11,6 @@ Chrono envoiMessage;
 #define input_wind A1
 #define input_fire A0
 #define resistor 10000
-
-
 
 
 
@@ -91,14 +94,12 @@ void loop(){
   }
   /////////////////////////////////////////////////////////////////////WIND
 
- // if ( envoiMessage.metro(10) ) {
     float read_wind;
 
     read_wind = analogRead(input_wind);
 
     Serial.print("wind ");
     Serial.println(read_wind);
-//  }
 }
 
 
