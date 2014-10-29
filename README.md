@@ -29,10 +29,20 @@ Pour démarrer le client Arduino <--> serveur, éxécuter les commandes suivante
 ```
 cd arduino_server/
 npm install
+```
+
+Si vous utilisez le serveur distant, exécutez la commande suivante :
+
+```
 node app.js
 ```
 
-Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http://localhost:8080)
+Sinon :
+```
+node app.js --server local
+```
+
+Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http://localhost:8080) (ou le serveur distant le cas échéant).
 
 ### Schéma du système
 ![Schema](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/schema.png)

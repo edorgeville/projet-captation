@@ -9,7 +9,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 
 	var wind = 1;
-	var fire = 1;
+	var fire = 100;
 	var water = 1;
 
 	// init renderer
@@ -99,7 +99,7 @@
 	var material = new THREE.MeshFaceMaterial(materialArray);
 	var soleil = new THREE.Mesh(geometry, material);
 	soleil.position.x = 1;
-	soleil.position.y = -2.8;
+	soleil.position.y = 4;
 	soleil.position.z = -15;
 
 	scene.add(soleil);

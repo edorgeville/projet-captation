@@ -1,8 +1,19 @@
 
 // Connect to server
 var io = require('socket.io-client');
-var socket = io.connect('http://localhost:8080', {reconnect: true});
-// var socket = io.connect('http://captation.erwandorgeville.com', {reconnect: true});
+var optimist = require('optimist');
+var socket;
+
+console.log('');
+console.log('');
+
+if(optimist.argv.server == "local"){
+    console.log('------> Server local');
+    socket = io.connect('http://localhost:8080', {reconnect: true});
+}else{
+    console.log('------> Server distant');
+    socket = io.connect('http://captation.erwandorgeville.com', {reconnect: true});
+}
 
 var prompt = require('prompt');
 var serialport = require('serialport');
@@ -15,6 +26,8 @@ var questions2 = [
     {
         name: 'port',
         description: 'Quel port utiliser ?',
+        default: 0,
+        type: 'number',
     }
 ];
 
@@ -77,19 +90,24 @@ function saveOptions(options){
 }
 
 console.log('');
-console.log('');
-console.log('--------> Début de l\'étalonnage...');
+console.log('------> Début de l\'étalonnage...');
 console.log('');
 
 continuerQuestions2();
 
+var portsNames = [];
+
 function continuerQuestions2(){
     serialport.list(function (err, ports) {
         console.log('Available serial ports :')
+        var count = 0;
         ports.forEach(function(port) {
-            console.log(" " + port.comName);
-            questions2[0].default = port.comName;
+            console.log(" [" + count + "] " + port.comName);
+            portsNames.push(port.comName);
+            // questions2[0].default = port.comName;
+            count++;
         });
+        // console.log(ports);
         console.log('');
         prompt.get(questions2, function (err, result) {
             if (err) { return onErr(err); }
@@ -107,8 +125,8 @@ var lastReceived = {};
 function startSerial() {
     // Connect to Arduino
     // Look for newline delimiter
-    console.log("ARDUINO > Connecting to port: "+ options.port);
-    serial = new serialport.SerialPort( options.port, {parser: serialport.parsers.readline( '\n' )  } );
+    console.log("ARDUINO > Connecting to port: " + portsNames[options.port]);
+    serial = new serialport.SerialPort( portsNames[options.port], {parser: serialport.parsers.readline( '\n' )  } );
     
     serial.on('data', function(data) {
         try{
