@@ -268,6 +268,8 @@ footer p{margin: 5px 8px;}</style>
 			nuage(nowMsec);
 		// }
 
+		windSound.volume = mapIt(wind, 0,100,0,1);
+		waterSound.volume = mapIt(water, 40,100,0,1);
 
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60;
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec);
@@ -386,6 +388,20 @@ footer p{margin: 5px 8px;}</style>
 
 		nuage.gouttes.push(goutte);
 	}
+
+	var windSound = new Audio('sounds/wind.mp3');
+	windSound.volume = 0;
+	windSound.loop = true;
+	windSound.play();
+
+	var waterSound = new Audio('sounds/water.mp3');
+	waterSound.volume = 0;
+	waterSound.loop = true;
+	waterSound.play();
+
+	// function playWind(){
+	// 	windSound.play();
+	// }
 
 </script>
 <script src="/socket.io/socket.io.js"></script><script>
