@@ -1,5 +1,9 @@
+#include <Chrono.h>
+
+Chrono envoiMessage;
+
 #define input_water 1
-#define input_wind 2
+#define input_wind A1
 #define input_fire A0
 #define resistor 10000
 
@@ -18,19 +22,19 @@ volatile float flowrate;
 
 
 
-  SIGNAL(TIMER0_COMPA_vect) {
-    uint8_t x = digitalRead(input_water);
+SIGNAL(TIMER0_COMPA_vect) {
+  uint8_t x = digitalRead(input_water);
 
-    if (x == lastflowpinstate) {
-      lastflowratetimer++;
-      return; // nothing changed!
-    }
-
-    lastflowpinstate = x;
-    flowrate = 1000.0;
-    flowrate /= lastflowratetimer;  // in hertz
-    lastflowratetimer = 0;
+  if (x == lastflowpinstate) {
+    lastflowratetimer++;
+    return; // nothing changed!
   }
+
+  lastflowpinstate = x;
+  flowrate = 1000.0;
+  flowrate /= lastflowratetimer;  // in hertz
+  lastflowratetimer = 0;
+}
 
 
 
@@ -74,22 +78,30 @@ void loop(){
 
 
   /////////////////////////////////////////////////////////////////////FIRE
-  float read_fire;
+ // if ( envoiMessage.metro(10) ) {
+    float read_fire;
 
-  read_fire = analogRead(input_fire);
+    read_fire = analogRead(input_fire);
 
-  read_fire = (1023/ read_fire) -1;
-  read_fire = resistor / read_fire;
+    read_fire = (1023/ read_fire) -1;
+    read_fire = resistor / read_fire;
 
-  Serial.print("fire ");
-  Serial.println(read_fire);
-
-delay(1000);
+    Serial.print("fire ");
+    Serial.println(read_fire);
+//  }
   /////////////////////////////////////////////////////////////////////WIND
-  //To be continued
 
+ // if ( envoiMessage.metro(10) ) {
+    float read_wind;
 
+    read_wind = analogRead(input_wind);
+
+    Serial.print("wind ");
+    Serial.println(read_wind);
+//  }
+delay(500);
 }
+
 
 
 
