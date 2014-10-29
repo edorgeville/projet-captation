@@ -277,7 +277,7 @@
 			// console.log(nowMsec - nuage.lastGoutte);
 			if(nowMsec - nuage.lastGoutte > 1000 ){
 				if(nuage.position.x >= -10){
-					// console.log('adding goutte from nuage ' + i)
+					console.log('adding goutte from nuage ' + i)
 					nuage.lastGoutte = nowMsec;
 					addGoute(nuage);
 				} 
@@ -329,7 +329,7 @@
 
 	function addGoute(nuage){
 
-		var geometry = new THREE.BoxGeometry(0.1,0.4,0,1);
+		var geometry = new THREE.BoxGeometry(0.05,0.2,0,1);
 		var materialArray = [];
 		for(var i = 0; i < 6; i ++){
 			materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/goutte.png' ), transparent: true }));
