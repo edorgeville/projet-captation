@@ -55,6 +55,10 @@ Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http:/
 
 ![Schema] (https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/shema_final.png) 
 
+### Montage final
+
+![Montage](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/fini.jpg)
+
 ### Demo
 ![Demonstration](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/demo.gif)
 
