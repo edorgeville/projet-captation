@@ -52,12 +52,20 @@
 
 	var geometry = new THREE.BoxGeometry(50,50,0,1);;
 
-	var material = new THREE.MeshBasicMaterial( { 
-	    color: "#D34917", 
-	    shading: THREE.FlatShading,
-	    vertexColors: THREE.VertexColors,
-	    transparent: true,
-	});
+	// var material = new THREE.MeshBasicMaterial( { 
+	//     color: "#D34917", 
+	//     shading: THREE.FlatShading,
+	//     vertexColors: THREE.VertexColors,
+	//     transparent: true,
+	// });
+
+	var materialArray = [];
+
+	for(var i = 0; i < 6; i ++){
+		materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/coucher_soleil.png'), transparent: true }));
+	}
+	var material = new THREE.MeshFaceMaterial(materialArray);
+
 
 	var ciel2 = new THREE.Mesh(geometry, material);
 	ciel2.position.y = 1;
@@ -73,7 +81,7 @@
 	    transparent: true,
 	    opacity: 0
 	});
-
+	
 	var ciel3 = new THREE.Mesh(geometry, material);
 	ciel3.position.y = 1;
 	ciel3.position.z = -14;
