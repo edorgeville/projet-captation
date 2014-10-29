@@ -45,6 +45,7 @@ Pour déployer le serveur sur Heroku simplement, il est possible d'utiliser le b
 - [Icônes](https://github.com/google/material-design-icons) par Google
 - [Icône de vent](http://thenounproject.com/term/wind/75103/) par [Thommy Lau](http://thenounproject.com/lch121/) utilisé sous license [CC-Attribution](http://creativecommons.org/licenses/by/3.0/us/)
 - [Icône d'Arduino](http://thenounproject.com/term/arduino/34403/) par [uizin](http://thenounproject.com/uizin/) utilisé sous license [CC-Attribution](http://creativecommons.org/licenses/by/3.0/us/)
+- Beaucoup de code, d'exemples et autres par [Thomas Ouellet Fredericks](http://t-o-f.info) sur [le wiki du cours](http://wiki.t-o-f.info/EDM4640/EDM4640).
 
 
 ### License
