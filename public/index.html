@@ -159,7 +159,7 @@
 	function addFleurs(){
 		fleurs = [];
 		//x, y, z
-		for(var i = 0; i < 50; i++){
+		for(var i = 0; i < 500; i++){
 			var randX = randomBetween(-2, 2);
 			var randY = randomBetween(-0.3, -0.8) - 0.2;
 			var randZ = randomBetween(-1.18, -1.22) * randY * 10 - 10;
@@ -181,20 +181,26 @@
 		var h = 0.8/8;
 		var d = 0;
 
-		var geometry = new THREE.BoxGeometry(w,h,d,1);
-		// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
-		var materialArray = [];
-		for(var i = 0; i < 6; i ++){
-			materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/pissenlit_petales.png' ), transparent: true }));
-		}
-		var material = new THREE.MeshFaceMaterial(materialArray);
-		var petales = new THREE.Mesh(geometry, material);
-		petales.position.x = x;
-		petales.position.y = y;
-		petales.position.z = z;
+		if((Math.random() * 10) > 8){
 
-		fleur.petales = petales;
-		scene.add(petales);
+			var geometry = new THREE.BoxGeometry(w,h,d,1);
+			// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
+			var materialArray = [];
+			for(var i = 0; i < 6; i ++){
+				materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/pissenlit_petales.png' ), transparent: true }));
+			}
+			var material = new THREE.MeshFaceMaterial(materialArray);
+			var petales = new THREE.Mesh(geometry, material);
+			petales.position.x = x;
+			petales.position.y = y;
+			petales.position.z = z;
+			
+				// petales.material.opacity = 0;
+
+			fleur.petales = petales;
+			scene.add(petales);
+
+		}
 
 		var geometry = new THREE.BoxGeometry(w/10,w,d,1);
 		// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
@@ -235,7 +241,7 @@
 	})
 	
 	// run the rendering loop
-	var lastTimeMsec= null
+	var lastTimeMsec= null;
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
@@ -253,9 +259,11 @@
 				randd = Math.random() * mapIt(wind,0,100,-0.01,0.01);
 			}
 			fleurs[i].tige.position.x = fleurs[i].tige.position.origX - mapIt(wind,0,100,-0.1,0.1) + randd;
-			fleurs[i].petales.rotation.z = mapIt(wind,0,100,-0.6,0.6) + randd;
-			fleurs[i].petales.position.x = fleurs[i].tige.position.origX - mapIt(wind,0,100,-0.12,0.12) + randd;
 			fleurs[i].tige.rotation.z = mapIt(wind,0,100,-0.8,0.8) + randd;
+			if(fleurs[i].petales){
+				fleurs[i].petales.rotation.z = mapIt(wind,0,100,-0.6,0.6) + randd;
+				fleurs[i].petales.position.x = fleurs[i].tige.position.origX - mapIt(wind,0,100,-0.12,0.12) + randd;
+			}
 		}
 
 		soleil.position.y = mapIt(fire, 0, 100, -2, 4);
