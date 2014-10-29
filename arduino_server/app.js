@@ -11,14 +11,6 @@ prompt.start();
 prompt.message = "";
 prompt.delimiter = "";
 
-// var questions = [
-//     {
-//         name: 'etalonner',
-//         description: 'Souhaitez-vous étalonner ? (oui/NON)',
-//         default: 'non',
-//     },
-// ]; 
-
 var questions2 = [
     {
         name: 'port',
@@ -76,7 +68,6 @@ var options = {};
 function saveOption(option){
     var name = Object.keys(option)[0];
     options[name] = option[name];
-    // console.log(options);
 }
 
 function saveOptions(options){
@@ -90,28 +81,14 @@ console.log('');
 console.log('--------> Début de l\'étalonnage...');
 console.log('');
 
-// prompt.get(questions, function (err, result) {
-//     if (err) { return onErr(err); }
-//     if(result.etalonner == "non")
-//         start();
-//     else {
-//         saveOption(result);
-//         continuerQuestions2();
-//     }
-// });
-
 continuerQuestions2();
 
 function continuerQuestions2(){
     serialport.list(function (err, ports) {
-        // var first = true;
         console.log('Available serial ports :')
         ports.forEach(function(port) {
             console.log(" " + port.comName);
-            // if(first){
-                questions2[0].default = port.comName;
-                // first = false;
-            // }
+            questions2[0].default = port.comName;
         });
         console.log('');
         prompt.get(questions2, function (err, result) {
@@ -170,10 +147,6 @@ function filter(name, data){
     var newMax = 100;
 
     var mapped = (data - min) / (max - min) * (newMax - newMin) + newMin;
-    
-    
-    // var mapped = ((newMax - newMin) * (data - min) / (max - min)) + newMin;
-
 
     return mapped;
 }
@@ -189,7 +162,6 @@ function continuerQuestions3(){
             console.log(lastReceived[question.oriName]);
             if(count > 0){
                 clearInterval(interval);
-                // next();
                 prompt.get(question, function (err, result) {
                     if (err) { return onErr(err); }
                     saveOption(result);
@@ -228,13 +200,4 @@ function start(){
     socket.on('connect', function(socket) { 
       console.log('Connected!');
     });
-
-    // setInterval(function(){
-    //     var value = Math.floor(Math.random() * 100);
-    //     console.log(value);
-    //     var e = {};
-    //     e.type = "wind";
-    //     e.value = value;
-    //     socket.emit('event', e);
-    // }, 1000);
 }
