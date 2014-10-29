@@ -1,8 +1,8 @@
 
 // Connect to server
 var io = require('socket.io-client');
-// var socket = io.connect('http://localhost:8080', {reconnect: true});
-var socket = io.connect('http://captation.erwandorgeville.com', {reconnect: true});
+var socket = io.connect('http://localhost:8080', {reconnect: true});
+// var socket = io.connect('http://captation.erwandorgeville.com', {reconnect: true});
 
 var prompt = require('prompt');
 var serialport = require('serialport');
