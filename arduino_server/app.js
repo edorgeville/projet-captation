@@ -45,7 +45,7 @@ var questions3 = [
         name: 'minFire',
         oriName: 'fire',
         description: 'Minimum fire',
-        default: 0,
+        default: 33,
         type: 'number',
     },
     {

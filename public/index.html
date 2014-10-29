@@ -43,20 +43,57 @@
 	// var mesh	= new THREE.Mesh( geometry, material );
 	// scene.add( mesh );
 
-	var geometry = new THREE.BoxGeometry(30,20,0,1);
+	var geometry = new THREE.BoxGeometry(50,50,0,1);
 	// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
-	var materialArray = [];
-	for(var i = 0; i < 6; i ++){
-		materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/ciel.png' ) }));
-	}
-	var material = new THREE.MeshFaceMaterial(materialArray);
+	// var materialArray = [];
+	// for(var i = 0; i < 6; i ++){
+	// 	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/ciel.png' ) }));
+	// }
+	// var material = new THREE.MeshFaceMaterial(materialArray);
+
+	var material = new THREE.MeshBasicMaterial( { 
+	    color: "#8cf4f4", 
+	    shading: THREE.FlatShading,
+	    vertexColors: THREE.VertexColors,
+	    transparent: true 
+	});
+
 	var ciel = new THREE.Mesh(geometry, material);
 	ciel.position.y = 1;
 	ciel.position.z = -20;
 
 	scene.add(ciel);
 
-	var geometry = new THREE.BoxGeometry(6,3.4,0,1);
+
+
+	var geometry = new THREE.BoxGeometry(50,50,0,1);;
+
+	var material = new THREE.MeshBasicMaterial( { 
+	    color: "#D34917", 
+	    shading: THREE.FlatShading,
+	    vertexColors: THREE.VertexColors,
+	    transparent: true
+	});
+
+	var ciel2 = new THREE.Mesh(geometry, material);
+	ciel2.position.y = 1;
+	ciel2.position.z = -21;
+	scene.add(ciel2);
+
+	var geometry = new THREE.BoxGeometry(5,5,0,1);
+	// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
+	var materialArray = [];
+	for(var i = 0; i < 6; i ++){
+		materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/pissenlit_petales.png'), transparent: true }));
+	}
+	var material = new THREE.MeshFaceMaterial(materialArray);
+	var soleil = new THREE.Mesh(geometry, material);
+	soleil.position.x = 1;
+	soleil.position.z = -15;
+
+	scene.add(soleil);
+
+	var geometry = new THREE.BoxGeometry(11.5,6.6,0,1);
 	// var meterial = new THREE.MeshBasicMaterial( { color: "red" } );
 	var materialArray = [];
 	for(var i = 0; i < 6; i ++){
@@ -64,8 +101,8 @@
 	}
 	var material = new THREE.MeshFaceMaterial(materialArray);
 	var colines = new THREE.Mesh(geometry, material);
-	colines.position.y = 0;
-	colines.position.z = -2;
+	colines.position.y = 0.2;
+	colines.position.z = -5;
 
 	scene.add(colines);
 
@@ -77,9 +114,9 @@
 
 	function addMoulins(){
 		moulins = [];
-		moulins.push(addMoulin(0.3, 0.8, 0, -1, 0, -1));
-		moulins.push(addMoulin(0.3, 0.8, 0, -2, 0, -1.5));
-		moulins.push(addMoulin(0.3, 0.8, 0, 2, 0.2, -2.5));
+		moulins.push(addMoulin(0.3, 0.65, 0, -1, -0.2, -1.4));
+		moulins.push(addMoulin(0.3, 0.65, 0, -2, -0.4, -1.4));
+		moulins.push(addMoulin(0.3, 0.65, 0, 2, -0.1, -2.5));
 	}
 
 	function addMoulin(w, h, d, x, y, z){
@@ -121,9 +158,21 @@
 
 	function addFleurs(){
 		fleurs = [];
-		fleurs.push(addFleur(1, -0.5, 0, -0.2));
-		fleurs.push(addFleur(0, -0.52, 0, -0.2));
-		fleurs.push(addFleur(0, -0.52, 0, -0.21));
+		//x, y, z
+		for(var i = 0; i < 50; i++){
+			var randX = randomBetween(-2, 2);
+			var randY = randomBetween(-0.3, -0.8) - 0.2;
+			var randZ = randomBetween(-1.18, -1.22) * randY * 10 - 10;
+			fleurs.push(addFleur(randX, randY, randZ));
+		}
+		// fleurs.push(addFleur(1, -0.5, -0.2));
+		// fleurs.push(addFleur(0, -0.52, -0.2));
+		// fleurs.push(addFleur(0.2, -0.54, -0.21));
+		// fleurs.push(addFleur(0.4, -0.56, -0.21));
+	}
+
+	function randomBetween(start, stop){
+		return (start + (Math.random()* (stop - start) ));
 	}
 
 	function addFleur(x, y, z){
@@ -144,7 +193,7 @@
 		petales.position.y = y;
 		petales.position.z = z;
 
-		fleur.patales = petales;
+		fleur.petales = petales;
 		scene.add(petales);
 
 		var geometry = new THREE.BoxGeometry(w/10,w,d,1);
@@ -158,7 +207,10 @@
 		tige.position.x = x + 0.02 * w;
 		tige.position.y = y - 0.55 * w;
 		tige.position.z = z - 0.01 * w;
+		tige.position.origX = tige.position.x; 
 		tige.name = "tige";
+		// tige.applyMatrix(new THREE.Matrix4().makeTranslation( (w/10) / 2,0,0,0));
+
 
 		fleur.tige = tige;
 		scene.add(tige);
@@ -194,6 +246,21 @@
 			moulins[i].helice.rotateZ(-0.001 * wind);
 		}
 
+		for (var i = 0; i < fleurs.length; i++){
+			//min -0.8 max 0.8
+			var randd = 0;
+			if(wind > 50){
+				randd = Math.random() * mapIt(wind,0,100,-0.01,0.01);
+			}
+			fleurs[i].tige.position.x = fleurs[i].tige.position.origX - mapIt(wind,0,100,-0.1,0.1) + randd;
+			fleurs[i].petales.rotation.z = mapIt(wind,0,100,-0.6,0.6) + randd;
+			fleurs[i].petales.position.x = fleurs[i].tige.position.origX - mapIt(wind,0,100,-0.12,0.12) + randd;
+			fleurs[i].tige.rotation.z = mapIt(wind,0,100,-0.8,0.8) + randd;
+		}
+
+		soleil.position.y = mapIt(fire, 0, 100, -2, 4);
+
+		ciel.material.opacity = mapIt(fire, 0, 100, 1, 0);
 
 		//
 		// measure time
@@ -206,6 +273,18 @@
 		})
 	})
 
+	function mapIt(value, min, max, newMin, newMax){
+		if(value < min){
+			value = min;
+		}
+		else if (value > max){
+			value = max;
+		}
+		var mapped = (value - min) / (max - min) * (newMax - newMin) + newMin;
+		// console.log(mapped);
+		return mapped;
+	}
+
 </script>
 <script src="/socket.io/socket.io.js"></script><script>
 	//-----------
@@ -216,6 +295,7 @@
 
 	var socket = io();
 	socket.on("init", function(initValues){
+		// console.table(initValues);
 		wind = initValues["wind"] || wind;
 		fire = initValues["fire"] || fire;
 		water = initValues["water"] || water;
@@ -224,14 +304,14 @@
 	socket.on("event", function(e){
 		if(e.type == "wind"){
 			wind = e.value;
-			console.warn("Spin speed : " + wind);
+			// console.warn("Spin speed : " + wind);
 		}else if(e.type == "fire"){
 			fire = e.value;
-			console.warn("Fire temperature : " + fire);
+			// console.warn("Fire temperature : " + fire);
 		}
 		else if(e.type == "water"){
 			water = e.value;
-			console.warn("Water flow : " + water);
+			// console.warn("Water flow : " + water);
 		}
 		// console.log("event: " + e);
 	});
