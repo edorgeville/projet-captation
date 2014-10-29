@@ -147,8 +147,8 @@ function sendData(name){
         type: name,
         value: filter(name, lastReceived[name]),
     });
-    if(name == "wind")
-        console.log(name + ": " + filter(name, lastReceived[name]));
+    // if(name == "wind")
+    //     console.log(name + ": " + filter(name, lastReceived[name]));
 }
 
 function filter(name, data){
