@@ -71,6 +71,7 @@ Pour déployer le serveur sur Heroku simplement, il est possible d'utiliser le b
 - Exemples d'AdaFruit pour le [Liquid Flow Meter](https://github.com/adafruit/Adafruit-Flow-Meter/blob/master/Adafruit_FlowMeter.pde) et le [Thermistor](https://learn.adafruit.com/thermistor?view=all)
 - [Son de vent](https://www.freesound.org/people/Bosk1/sounds/144083/) par [Bosk1](https://www.freesound.org/people/Bosk1/) utilisé sous license [CC-Attribution](http://creativecommons.org/licenses/by/3.0/us/)
 - [Son de pluie](https://www.freesound.org/people/mshahen/sounds/242892/) par [mshahen](https://www.freesound.org/people/mshahen/sounds/242892/) utilisé sous license [CC-Attribution](http://creativecommons.org/licenses/by/3.0/us/)
+- Un merci particulier à [Marc-Antoine Brodeur](http://marcantoinebrodeur.com/) ([Github](http://github.com/mabrodeur)) pour son conseil lors de la réalisation du capteur de vent à partir d'un moteur.
 
 
 ### License
