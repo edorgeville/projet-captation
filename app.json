@@ -1,0 +1,6 @@
+{
+  "name": "projet-captation",
+  "description": "A three.js environment affected by real life events via Arduino",
+  "repository": "https://github.com/th3m4ri0/projet-captation",
+  "keywords": ["node", "express", "captation", "arduino", "leonardo", "uqam", "serial", "three.js"]
+}
