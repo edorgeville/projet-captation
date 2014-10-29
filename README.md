@@ -1,7 +1,8 @@
+![Logo](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/logo.png)
 # Projet Captation
 ## Par [Ruby-Maude Rioux](http://ca.linkedin.com/pub/ruby-maude-rioux/5a/3b9/b5a) et [Erwan d'Orgeville](http://erwandorgeville.com)
 
-![Logo](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/logo.png)
+![Cover](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/cover.jpg)
 
 ### Description
 
