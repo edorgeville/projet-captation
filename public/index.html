@@ -262,29 +262,52 @@
 		// console.log('nuage' + nowMsec);
 		if(nuages.length < 5){
 			if(water > 50){
-				console.log(nowMsec - lastNuage);
+				// console.log(nowMsec - lastNuage);
 				if (nowMsec - lastNuage > 1000){
 					console.log('adding nuage');
 					lastNuage = nowMsec;
-					addNuage();
+					addNuage(nowMsec);
 				}
 			}
-			//move nuage
-			// console.log('moving nuages');
 		}
-		// console.log(nuages.length)
+		// move nuage
 		for(var i = 0; i < nuages.length; i++){
 			var nuage = nuages[i];
 			nuage.position.x -= 0.04;
+			// console.log(nowMsec - nuage.lastGoutte);
+			if(nowMsec - nuage.lastGoutte > 1000 ){
+				if(nuage.position.x >= -10){
+					// console.log('adding goutte from nuage ' + i)
+					nuage.lastGoutte = nowMsec;
+					addGoute(nuage);
+				} 
+			}
+			//move goutte
+			for(var j = 0; j < nuage.gouttes.length; j++){
+				// console.log(nowMsec);
+				var goutte = nuage.gouttes[j];
+				goutte.position.y -= 0.06;
+				// console.log('position goutte x ' + goutte.position.x);
+				if(goutte.position.y < -10){
+					scene.remove(goutte);
+					nuage.gouttes.splice(j, 1);
+					// console.log('removing goutte');
+					// console.log('nombre goutte: ' + nuage.gouttes.length);
+				}
+			}
+			//remove nuage
 			if(nuage.position.x < -10){
 				// console.log('removing nuage ' + i);
-				scene.remove(nuage);
-				nuages.splice(i, 1);
+				if(nuage.gouttes.length <= 0){
+					scene.remove(nuage);
+					nuages.splice(i, 1);
+				}
 			}
+			// console.log(nuage.gouttes.length);
 		}
 	}
 
-	function addNuage(){
+	function addNuage(nowMsec){
 		var geometry = new THREE.BoxGeometry(1.4,1,0,1);
 		var materialArray = [];
 		for(var i = 0; i < 6; i ++){
@@ -294,11 +317,32 @@
 		var nuage = new THREE.Mesh(geometry, material);
 		nuage.position.x = 10;
 		nuage.position.y = randomBetween(2, 4);
-		nuage.position.z = -10;
+		nuage.position.z = randomBetween(-9, -11);
+		nuage.addedAt = nowMsec;
+		nuage.gouttes = [];
+		nuage.lastGoutte = 0;
 
 		scene.add(nuage);
 
 		nuages.push(nuage);
+	}
+
+	function addGoute(nuage){
+
+		var geometry = new THREE.BoxGeometry(0.1,0.4,0,1);
+		var materialArray = [];
+		for(var i = 0; i < 6; i ++){
+			materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'images/goutte.png' ), transparent: true }));
+		}
+		var material = new THREE.MeshFaceMaterial(materialArray);
+		var goutte = new THREE.Mesh(geometry, material);
+		goutte.position.x = randomBetween(-2, 4);
+		goutte.position.y = randomBetween(6, 8);
+		goutte.position.z = randomBetween(-3, -6);
+
+		scene.add(goutte);
+
+		nuage.gouttes.push(goutte);
 	}
 
 </script>
