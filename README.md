@@ -62,9 +62,10 @@ Ouvrez l'adresse suivante dans votre navigateur : [http://localhost:8080](http:/
 ### Demo
 ![Demonstration](https://raw.githubusercontent.com/th3m4ri0/projet-captation/master/images/demo.gif)
 
-### Deploy to Heroku
+### Deploy to Heroku or Nitrous
 Pour déployer le serveur sur Heroku simplement, il est possible d'utiliser le bouton suivant :  
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/th3m4ri0/projet-captation)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/th3m4ri0/projet-captation)
+[![Hack th3m4ri0/projet-captation on Nitrous.IO](https://d3o0mnbgv6k92a.cloudfront.net/assets/hack-l-v1-4b6757c3247e3c50314390ece34cdb11.png)](https://www.nitrous.io/hack_button?source=embed&runtime=nodejs&repo=th3m4ri0%2Fprojet-captation)
 
 ### Thanks
 - Ce projet est basé sur [Three.js Boilerplate](https://github.com/jeromeetienne/threejsboilerplate/) réalisé par [Jerome Etienne](https://github.com/jeromeetienne/)
