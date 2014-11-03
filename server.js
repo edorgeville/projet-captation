@@ -10,7 +10,11 @@ var port = process.env.PORT || 8080;
 //   res.send('<script src="/socket.io/socket.io.js"></script><script>var socket = io(); socket.on("event", function(e){console.log("event: " + e); });</script>');
 // });
 
-var values = {};
+var values = {
+    wind: 0,
+    fire: 100,
+    water: 0,
+};
 
 app.use(express.static(__dirname + "/public/"));
 
@@ -41,6 +45,48 @@ io.on('connection', function(socket)
     });
 });
 
+var timer;
+var intervalRandom;
+
+startTimer();
+
+function startTimer(){
+    timer = setTimeout(startRandom,5000);
+}
+
 function setValues(type, value){
     values[type] = value;
+    timerReset();
+}
+
+function timerReset(){
+    clearTimeout(timer);
+    clearIntervalRandom();
+    startTimer();
+}
+
+function startRandom(){
+    clearIntervalRandom();
+    intervalRandom = setInterval(randomValues, 100);
+}
+
+function clearIntervalRandom(){
+    clearInterval(intervalRandom);
+}
+
+function randomValues(){
+    values.wind += Math.random() * 4 - 2;
+    if(values.wind < 0) values.wind = 0;
+    if(values.wind > 100) values.wind = 100;
+    io.sockets.emit('event', {type: 'wind', value: values.wind});
+
+    values.fire += Math.random() * 2 - 1;
+    if(values.fire < 0) values.fire = 0;
+    if(values.fire > 100) values.fire = 100;
+    io.sockets.emit('event', {type: 'fire', value: values.fire});
+
+    if(values.water < 0) values.water = 0;
+    if(values.water > 100) values.water = 100;
+    values.water += Math.random() * 4 - 2;
+    io.sockets.emit('event', {type: 'water', value: values.water});
 }
